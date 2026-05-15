@@ -61,10 +61,14 @@ module.exports = {
     avgAgeHealth(status) {
         let avgAge = 0;
         let record = records.filter(r => r.healthStatus.toLowerCase() == status.toLowerCase());
-        record.forEach((record) => {
-            avgAge += record.age;
-        })
-        return `The average age of ${status.toLowerCase()} records is ${avgAge / record.length}`;
+        if (record.length !== 0) {
+            record.forEach((record) => {
+                avgAge += record.age;
+            })
+            return `The average age of ${status.toLowerCase()} records is ${avgAge / record.length}`;
+        } else {
+            return `There are no entries of ${status.toLowerCase()} records.`;
+        }
     },
     //Amount of records in each Health Status
     amtOfRecordsByHealth(status) {
